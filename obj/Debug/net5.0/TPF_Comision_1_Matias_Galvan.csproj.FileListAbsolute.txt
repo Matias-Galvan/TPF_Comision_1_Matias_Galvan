@@ -1,0 +1,16 @@
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.exe
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.deps.json
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.runtimeconfig.json
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.runtimeconfig.dev.json
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.dll
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\ref\TPF_Comision_1_Matias_Galvan.dll
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\bin\Debug\net5.0\TPF_Comision_1_Matias_Galvan.pdb
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.csproj.AssemblyReference.cache
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.AssemblyInfoInputs.cache
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.AssemblyInfo.cs
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.csproj.CoreCompileInputs.cache
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.dll
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\ref\TPF_Comision_1_Matias_Galvan.dll
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.pdb
+C:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\obj\Debug\net5.0\TPF_Comision_1_Matias_Galvan.genruntimeconfig.cache

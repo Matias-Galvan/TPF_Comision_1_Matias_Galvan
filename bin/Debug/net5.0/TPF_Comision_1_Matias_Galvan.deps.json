@@ -1,0 +1,23 @@
+{
+  "runtimeTarget": {
+    "name": ".NETCoreApp,Version=v5.0",
+    "signature": ""
+  },
+  "compilationOptions": {},
+  "targets": {
+    ".NETCoreApp,Version=v5.0": {
+      "TPF_Comision_1_Matias_Galvan/1.0.0": {
+        "runtime": {
+          "TPF_Comision_1_Matias_Galvan.dll": {}
+        }
+      }
+    }
+  },
+  "libraries": {
+    "TPF_Comision_1_Matias_Galvan/1.0.0": {
+      "type": "project",
+      "serviceable": false,
+      "sha512": ""
+    }
+  }
+}
