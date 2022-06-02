@@ -11,7 +11,7 @@ namespace TPF_Comision_1_Matias_Galvan
             arbol.Insertar("garrafas.", raiz);
             arbol.Insertar("com", raiz);
 
-           // arbol.preOrden(raiz);
+            arbol.preOrden(raiz);
 
         }
     }

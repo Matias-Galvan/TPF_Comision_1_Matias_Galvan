@@ -1,33 +1,36 @@
 {
   "version": 3,
   "targets": {
-    "net5.0": {}
+    "net6.0": {}
   },
   "libraries": {},
   "projectFileDependencyGroups": {
-    "net5.0": []
+    "net6.0": []
   },
   "packageFolders": {
-    "C:\\Users\\matias\\.nuget\\packages\\": {}
+    "C:\\Users\\Matias Galvan\\.nuget\\packages\\": {}
   },
   "project": {
     "version": "1.0.0",
     "restore": {
-      "projectUniqueName": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
+      "projectUniqueName": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
       "projectName": "TPF_Comision_1_Matias_Galvan",
-      "projectPath": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
-      "packagesPath": "C:\\Users\\matias\\.nuget\\packages\\",
-      "outputPath": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\obj\\",
+      "projectPath": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
+      "packagesPath": "C:\\Users\\Matias Galvan\\.nuget\\packages\\",
+      "outputPath": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\obj\\",
       "projectStyle": "PackageReference",
       "configFilePaths": [
-        "C:\\Users\\matias\\AppData\\Roaming\\NuGet\\NuGet.Config"
+        "C:\\Users\\Matias Galvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
       ],
       "originalTargetFrameworks": [
-        "net5.0"
+        "net6.0"
       ],
+      "sources": {
+        "https://api.nuget.org/v3/index.json": {}
+      },
       "frameworks": {
-        "net5.0": {
-          "targetAlias": "net5.0",
+        "net6.0": {
+          "targetAlias": "net6.0",
           "projectReferences": {}
         }
       },
@@ -38,8 +41,8 @@
       }
     },
     "frameworks": {
-      "net5.0": {
-        "targetAlias": "net5.0",
+      "net6.0": {
+        "targetAlias": "net6.0",
         "imports": [
           "net461",
           "net462",
@@ -55,7 +58,7 @@
             "privateAssets": "all"
           }
         },
-        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\5.0.302\\RuntimeIdentifierGraph.json"
+        "runtimeIdentifierGraphPath": "C:\\Program Files\\dotnet\\sdk\\6.0.300\\RuntimeIdentifierGraph.json"
       }
     }
   }
