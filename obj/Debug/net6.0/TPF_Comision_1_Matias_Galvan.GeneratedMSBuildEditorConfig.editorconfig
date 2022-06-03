@@ -7,4 +7,8 @@ build_property.InvariantGlobalization =
 build_property.PlatformNeutralAssembly = 
 build_property._SupportedPlatformList = Linux,macOS,Windows
 build_property.RootNamespace = TPF_Comision_1_Matias_Galvan
+<<<<<<< HEAD
 build_property.ProjectDir = c:\Users\matias\Desktop\Facultad\Complejidad temporal y estructuras de datos\2022\tp02\TPF_Comision_1_Matias_Galvan\
+=======
+build_property.ProjectDir = c:\Users\Matias Galvan\OneDrive - Hexagon Consulting S.R.L\Escritorio\TPF\TPF_Comision_1_Matias_Galvan\
+>>>>>>> e30fc011d11c595a4d9f16ca099ec6bbc0c49dcb
