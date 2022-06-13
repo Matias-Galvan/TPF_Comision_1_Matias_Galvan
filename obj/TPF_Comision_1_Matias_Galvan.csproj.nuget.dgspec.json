@@ -1,27 +1,24 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj": {}
+    "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj": {
+    "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
+        "projectUniqueName": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
         "projectName": "TPF_Comision_1_Matias_Galvan",
-        "projectPath": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
-        "packagesPath": "C:\\Users\\Matias Galvan\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\obj\\",
+        "projectPath": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
+        "packagesPath": "C:\\Users\\matias\\.nuget\\packages\\",
+        "outputPath": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\obj\\",
         "projectStyle": "PackageReference",
         "configFilePaths": [
-          "C:\\Users\\Matias Galvan\\AppData\\Roaming\\NuGet\\NuGet.Config"
+          "C:\\Users\\matias\\AppData\\Roaming\\NuGet\\NuGet.Config"
         ],
         "originalTargetFrameworks": [
           "net6.0"
         ],
-        "sources": {
-          "https://api.nuget.org/v3/index.json": {}
-        },
         "frameworks": {
           "net6.0": {
             "targetAlias": "net6.0",

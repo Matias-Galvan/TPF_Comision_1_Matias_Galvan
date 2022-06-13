@@ -1,12 +1,15 @@
 {
   "version": 2,
-<<<<<<< HEAD
   "dgSpecHash": "16J+TQEkhwO5yCmHMi1yZ5lUx2k/dKmRKwJwDJJjP6RWq95TziKro6nIx7xSbjiQ0Ux2bItmuo97bUm3aI/2dw==",
-=======
-  "dgSpecHash": "2ARcISfGbhittoQspxORq29nz4TSWrAiIvHtbmTi/3sF8t7qTjn0hQFqnRfBUptTd/WWPtULgs0Bng/aCf0riQ==",
->>>>>>> e30fc011d11c595a4d9f16ca099ec6bbc0c49dcb
   "success": true,
-  "projectFilePath": "C:\\Users\\Matias Galvan\\OneDrive - Hexagon Consulting S.R.L\\Escritorio\\TPF\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
+  "projectFilePath": "C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\TPF_Comision_1_Matias_Galvan.csproj",
   "expectedPackageFiles": [],
-  "logs": []
+  "logs": [
+    {
+      "code": "Undefined",
+      "level": "Warning",
+      "warningLevel": 1,
+      "message": "Problema al leer el archivo de caché C:\\Users\\matias\\Desktop\\Facultad\\Complejidad temporal y estructuras de datos\\2022\\tp02\\TPF_Comision_1_Matias_Galvan\\obj\\project.nuget.cache : Invalid property identifier character: <. Path 'version', line 3, position 0."
+    }
+  ]
 }
