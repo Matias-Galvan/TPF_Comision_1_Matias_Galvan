@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 
-namespace tp1
+namespace TPF_Comision_1_Matias_Galvan
 {
 
 	public class Cola<T>
