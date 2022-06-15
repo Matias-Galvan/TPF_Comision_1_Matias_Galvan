@@ -59,6 +59,22 @@ namespace TPF_Comision_1_Matias_Galvan
 		public int nivel(T dato) {
 			return 0;
 		}
+
+		public void preOrden(){
+			//Se procesa la raiz
+			if (!this.esVacio())
+			{
+				System.Console.WriteLine(this.getDatoRaiz() + "");
+			}
+			//Luego se procesan los hijos
+			if (!this.esHoja())
+			{
+				foreach (var hijo in this.getHijos())
+				{
+					hijo.preOrden();
+				}
+			}
+		}
 	
 	}
 }
