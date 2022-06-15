@@ -49,7 +49,8 @@ namespace TPF_Comision_1_Matias_Galvan
             return opcion;
         }
 
-        public void modAdmin(){
+        public void modAdmin()
+        {
             Console.Clear();
             System.Console.WriteLine("*****************************");
             System.Console.WriteLine("MÓDULO ADMINISTRACIÓN");
@@ -75,17 +76,19 @@ namespace TPF_Comision_1_Matias_Galvan
             Console.Write("Opcion: ");
         }
 
-        public int menuAdmin(int opcion){
+        public int menuAdmin(int opcion)
+        {
             switch (opcion)
             {
                 case 1:
-                break;
+                    System.Console.WriteLine("Ingrese dominio y todo lo demas");
+                    break;
                 case 2:
-                break;
+                    break;
                 case 3:
-                break;
+                    break;
                 default:
-                break;
+                    break;
             }
             return opcion;
         }
