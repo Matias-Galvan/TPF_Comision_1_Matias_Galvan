@@ -1,4 +1,8 @@
-﻿namespace TPF_Comision_1_Matias_Galvan;
+﻿using System;
+using System.Collections.Generic;
+using System.IO;
+
+namespace TPF_Comision_1_Matias_Galvan;
 
 class Program
 
@@ -11,12 +15,10 @@ class Program
         System.Console.WriteLine("Iniciando...");
         Menu menu = new Menu();
 
-        int opc;
-
-
         menu.mostrarMenuPrincipal();
-        opc = int.Parse(Console.ReadLine());
+        int opc = int.Parse(Console.ReadLine());
         menu.elegirOpcion(opc);
+
         ArbolGeneral<int> arbol = new ArbolGeneral<int>(10);
         ArbolGeneral<int> hijo1 = new ArbolGeneral<int>(20);
         ArbolGeneral<int> hijo2 = new ArbolGeneral<int>(30);

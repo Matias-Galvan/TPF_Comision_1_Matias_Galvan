@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.IO;
 
 namespace TPF_Comision_1_Matias_Galvan
 {
@@ -9,6 +10,8 @@ namespace TPF_Comision_1_Matias_Galvan
         private string opcion2;
         private string opcion3;
 
+        public int opc;
+
         public Menu()
         {
 
@@ -16,7 +19,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void mostrarMenuPrincipal()
         {
-            Console.Clear();
+            System.Console.Clear();
             System.Console.WriteLine("*****************************");
             System.Console.WriteLine("DNS - GESTIÓN DE DIRECCIONES IP");
             System.Console.WriteLine("*****************************");
@@ -26,13 +29,13 @@ namespace TPF_Comision_1_Matias_Galvan
             System.Console.WriteLine("2- Módulo de consultas");
             System.Console.WriteLine("3- Salir del programa");
             Console.Write("Opcion: ");
-            int opcionElegida = int.Parse(Console.ReadLine());
-            this.menuAdmin(opcionElegida);
+
 
         }
 
         public int elegirOpcion(int opcion)
         {
+            this.mostrarMenuPrincipal();
             switch (opcion)
             {
                 case 1:
@@ -41,10 +44,16 @@ namespace TPF_Comision_1_Matias_Galvan
                 case 2:
                     this.modConsulta();
                     break;
+                case 3:
+                    System.Console.WriteLine("Presione una tecla para salir...");
+                    Console.ReadKey();
+                    break;
                 default:
                     System.Console.WriteLine("Errorardo");
                     break;
+
             }
+
 
             return opcion;
         }
@@ -59,7 +68,8 @@ namespace TPF_Comision_1_Matias_Galvan
             System.Console.WriteLine("2-Eliminar equipo");
             System.Console.WriteLine("3-Regresar al menú principal");
             Console.Write("Opcion: ");
-
+            int opcionElegida = int.Parse(Console.ReadLine());
+            this.menuAdmin(opcionElegida);
 
         }
 
@@ -78,14 +88,39 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public int menuAdmin(int opcion)
         {
+
             switch (opcion)
             {
                 case 1:
                     System.Console.WriteLine("Ingrese dominio y todo lo demas");
                     break;
                 case 2:
+                    System.Console.WriteLine("Eliminar equipo");
                     break;
                 case 3:
+                    this.mostrarMenuPrincipal();
+                    break;
+                default:
+                    break;
+            }
+            return opcion;
+        }
+
+        public int menuConsulta(int opcion)
+        {
+            switch (opcion)
+            {
+                case 1:
+                    System.Console.WriteLine("Imprimiendo ip con todos los servicios....");
+                    break;
+                case 2:
+                    System.Console.WriteLine("Imprimiendo todos los equipos de un subdominio....");
+                    break;
+                case 3:
+                    System.Console.WriteLine("Imprimiendo cantidad de dominios, subdominios, equipos....");
+                    break;
+                case 4:
+                    this.mostrarMenuPrincipal();
                     break;
                 default:
                     break;
