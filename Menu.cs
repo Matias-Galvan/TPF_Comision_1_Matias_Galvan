@@ -11,10 +11,38 @@ namespace TPF_Comision_1_Matias_Galvan
         private string opcion3;
 
         public int opc;
+        ArbolGeneral<string> arbol = new ArbolGeneral<string>("Servidor");
 
         public Menu()
         {
 
+        }
+
+
+
+        public int elegirOpcion(int opcion)
+        {
+            switch (opcion)
+            {
+                case 1:
+                    this.modAdmin();
+                    break;
+                case 2:
+                    this.modConsulta();
+                    break;
+                case 3:
+                    System.Console.WriteLine("Presione una tecla para salir...");
+                    Console.ReadKey();
+                    Console.Clear();
+                    break;
+                default:
+                    System.Console.WriteLine("Errorardo");
+                    break;
+
+            }
+
+
+            return opcion;
         }
 
         public void mostrarMenuPrincipal()
@@ -31,31 +59,6 @@ namespace TPF_Comision_1_Matias_Galvan
             Console.Write("Opcion: ");
 
 
-        }
-
-        public int elegirOpcion(int opcion)
-        {
-            this.mostrarMenuPrincipal();
-            switch (opcion)
-            {
-                case 1:
-                    this.modAdmin();
-                    break;
-                case 2:
-                    this.modConsulta();
-                    break;
-                case 3:
-                    System.Console.WriteLine("Presione una tecla para salir...");
-                    Console.ReadKey();
-                    break;
-                default:
-                    System.Console.WriteLine("Errorardo");
-                    break;
-
-            }
-
-
-            return opcion;
         }
 
         public void modAdmin()
@@ -86,24 +89,25 @@ namespace TPF_Comision_1_Matias_Galvan
             Console.Write("Opcion: ");
         }
 
-        public int menuAdmin(int opcion)
+        public void menuAdmin(int opcion)
         {
-
             switch (opcion)
             {
                 case 1:
-                    System.Console.WriteLine("Ingrese dominio y todo lo demas");
+                    this.ingresarDatos();
                     break;
                 case 2:
-                    System.Console.WriteLine("Eliminar equipo");
+                    this.eliminarDatos();
                     break;
                 case 3:
                     this.mostrarMenuPrincipal();
+                    opc = int.Parse(Console.ReadLine());
+                    this.elegirOpcion(opc);
                     break;
                 default:
                     break;
             }
-            return opcion;
+
         }
 
         public int menuConsulta(int opcion)
@@ -126,6 +130,44 @@ namespace TPF_Comision_1_Matias_Galvan
                     break;
             }
             return opcion;
+        }
+
+        public void ingresarDatos()
+        {
+            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+            string nombreDominio = Console.ReadLine();
+            System.Console.WriteLine("Paso 2 / Ingresar dirección IP del equipo , 192.198.0.1");
+            string direccionIP = Console.ReadLine();
+            System.Console.WriteLine("Paso 3 / Ingresar servicios que provee, www, dns, ftp , routing");
+            string servicios = Console.ReadLine();
+
+            this.procesarDatosIngreso(nombreDominio, direccionIP, servicios);
+
+
+
+
+        }
+
+        public void procesarDatosIngreso(string nomDom, string dirIP, string servicios)
+        {
+            string resultado = "Finalizo con exito el ingreso";
+            string[] nombreDominioArray = nomDom.Split('.');
+            Array.Reverse(nombreDominioArray);
+
+
+            foreach (var item in nombreDominioArray)
+            {
+                System.Console.WriteLine($"{item}");
+            }
+            System.Console.WriteLine(dirIP);
+            System.Console.WriteLine(servicios);
+
+            System.Console.WriteLine(resultado);
+        }
+
+        public void eliminarDatos()
+        {
+            System.Console.WriteLine("Eliminar rama completa");
         }
     }
 }
