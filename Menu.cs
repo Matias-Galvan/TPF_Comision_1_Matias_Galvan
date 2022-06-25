@@ -1,6 +1,6 @@
 using System;
 using System.Collections.Generic;
-using System.IO;
+using System.Text.RegularExpressions;
 
 namespace TPF_Comision_1_Matias_Galvan
 {
@@ -47,7 +47,6 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void mostrarMenuPrincipal()
         {
-            System.Console.Clear();
             System.Console.WriteLine("*****************************");
             System.Console.WriteLine("DNS - GESTIÓN DE DIRECCIONES IP");
             System.Console.WriteLine("*****************************");
@@ -135,7 +134,14 @@ namespace TPF_Comision_1_Matias_Galvan
         public void ingresarDatos()
         {
             System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+
+            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
             string nombreDominio = Console.ReadLine();
+            while (!validarURL.IsMatch(nombreDominio))
+            {
+                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                nombreDominio = Console.ReadLine();
+            }
             System.Console.WriteLine("Paso 2 / Ingresar dirección IP del equipo , 192.198.0.1");
             string direccionIP = Console.ReadLine();
             System.Console.WriteLine("Paso 3 / Ingresar servicios que provee, www, dns, ftp , routing");
@@ -150,19 +156,30 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void procesarDatosIngreso(string nomDom, string dirIP, string servicios)
         {
-            string resultado = "Finalizo con exito el ingreso";
+            // string resultado = "Finalizo con exito el ingreso";
             string[] nombreDominioArray = nomDom.Split('.');
             Array.Reverse(nombreDominioArray);
 
-
+            Cola<string> cola = new Cola<string>();
             foreach (var item in nombreDominioArray)
             {
-                System.Console.WriteLine($"{item}");
+                cola.encolar(item);
             }
-            System.Console.WriteLine(dirIP);
-            System.Console.WriteLine(servicios);
+            while (!cola.esVacia())
+            {
+                string dato = cola.desencolar();
 
-            System.Console.WriteLine(resultado);
+                ArbolGeneral<string> hijo1 = new ArbolGeneral<string>(dato);
+                arbol.agregarHijo(hijo1);
+                
+
+            }
+            arbol.preOrden();
+
+            // System.Console.WriteLine(dirIP);
+            // System.Console.WriteLine(servicios);
+
+            // System.Console.WriteLine(resultado);
         }
 
         public void eliminarDatos()

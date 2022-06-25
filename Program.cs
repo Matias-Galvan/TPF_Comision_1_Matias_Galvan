@@ -37,7 +37,7 @@ class Program
         // }
 
         System.Console.WriteLine("Recorrido preorden");
-        // arbol.preOrden();
+         
     }
 
 }
