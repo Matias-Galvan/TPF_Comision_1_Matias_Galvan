@@ -1,5 +1,6 @@
 using System;
 using System.Collections.Generic;
+using System.Collections;
 using System.Text.RegularExpressions;
 
 namespace TPF_Comision_1_Matias_Galvan
@@ -11,7 +12,8 @@ namespace TPF_Comision_1_Matias_Galvan
         private string opcion3;
 
         public int opc;
-        ArbolGeneral<string> arbol = new ArbolGeneral<string>("Servidor");
+
+        ArbolGeneral arbol = new ArbolGeneral();
 
         public Menu()
         {
@@ -43,21 +45,6 @@ namespace TPF_Comision_1_Matias_Galvan
 
 
             return opcion;
-        }
-
-        public void mostrarMenuPrincipal()
-        {
-            System.Console.WriteLine("*****************************");
-            System.Console.WriteLine("DNS - GESTIÓN DE DIRECCIONES IP");
-            System.Console.WriteLine("*****************************");
-            System.Console.WriteLine("Menú principal");
-            System.Console.WriteLine(" ");
-            System.Console.WriteLine("1- Módulo de administración");
-            System.Console.WriteLine("2- Módulo de consultas");
-            System.Console.WriteLine("3- Salir del programa");
-            Console.Write("Opcion: ");
-
-
         }
 
         public void modAdmin()
@@ -98,11 +85,6 @@ namespace TPF_Comision_1_Matias_Galvan
                 case 2:
                     this.eliminarDatos();
                     break;
-                case 3:
-                    this.mostrarMenuPrincipal();
-                    opc = int.Parse(Console.ReadLine());
-                    this.elegirOpcion(opc);
-                    break;
                 default:
                     break;
             }
@@ -122,9 +104,6 @@ namespace TPF_Comision_1_Matias_Galvan
                 case 3:
                     System.Console.WriteLine("Imprimiendo cantidad de dominios, subdominios, equipos....");
                     break;
-                case 4:
-                    this.mostrarMenuPrincipal();
-                    break;
                 default:
                     break;
             }
@@ -142,44 +121,82 @@ namespace TPF_Comision_1_Matias_Galvan
                 System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
                 nombreDominio = Console.ReadLine();
             }
-            System.Console.WriteLine("Paso 2 / Ingresar dirección IP del equipo , 192.198.0.1");
-            string direccionIP = Console.ReadLine();
-            System.Console.WriteLine("Paso 3 / Ingresar servicios que provee, www, dns, ftp , routing");
-            string servicios = Console.ReadLine();
 
-            this.procesarDatosIngreso(nombreDominio, direccionIP, servicios);
+            Cola<Nodo> cola = separarDominioSupInf(nombreDominio,false);
+            arbol.ingresarNodo(cola);
 
 
 
 
         }
 
-        public void procesarDatosIngreso(string nomDom, string dirIP, string servicios)
-        {
-            // string resultado = "Finalizo con exito el ingreso";
-            string[] nombreDominioArray = nomDom.Split('.');
-            Array.Reverse(nombreDominioArray);
+        // public void procesarDatosIngreso(string nomDom, string dirIP, string servicios)
+        // {
+        //     // string resultado = "Finalizo con exito el ingreso";
+        //     string[] nombreDominioArray = nomDom.Split('.');
+        //     Array.Reverse(nombreDominioArray);
 
-            Cola<string> cola = new Cola<string>();
-            foreach (var item in nombreDominioArray)
-            {
-                cola.encolar(item);
-            }
+        //     Cola<string> cola = new Cola<string>();
+        //     foreach (var item in nombreDominioArray)
+        //     {
+        //         cola.encolar(item);
+        //     }
+        //     while (!cola.esVacia())
+        //     {
+        //         string dato = cola.desencolar();
+
+        //         ArbolGeneral<string> hijo1 = new ArbolGeneral<string>(dato);
+        //         arbol.agregarHijo(hijo1);
+
+
+        //     }
+        //     arbol.preOrden();
+
+        //     // System.Console.WriteLine(dirIP);
+        //     // System.Console.WriteLine(servicios);
+
+        //     // System.Console.WriteLine(resultado);
+        // }
+
+        static Cola<Nodo> separarDominioSupInf(string nomDominio, bool buscarNodo)
+        {
+            string[] nombreDominioArray = nomDominio.Split('.');
+            Array.Reverse(nombreDominioArray);
+            Cola<Nodo> cola = new Cola<Nodo>();
+
+            int contador = nombreDominioArray.Length - 1;
+
             while (!cola.esVacia())
             {
-                string dato = cola.desencolar();
+                    foreach (var item in nombreDominioArray)
+                    {
+                        if (contador >= 3)
+                        {
+                            Nodo nuevoNodoDominioSuperior = new Nodo(item);
+                            cola.encolar(nuevoNodoDominioSuperior);
+                        }
+                        else
+                        {
+                            Nodo nuevoNodoDominioInferior = new Nodo(item);
+                            cola.encolar(nuevoNodoDominioInferior);
+                        }
+                        if (contador == 0)
+                        {
+                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
+                            nuevoNodo.agregarServicio();
+                            cola.encolar(nuevoNodo);
+                        }
+                        contador--;
 
-                ArbolGeneral<string> hijo1 = new ArbolGeneral<string>(dato);
-                arbol.agregarHijo(hijo1);
+                    }
+
+                
                 
 
             }
-            arbol.preOrden();
 
-            // System.Console.WriteLine(dirIP);
-            // System.Console.WriteLine(servicios);
 
-            // System.Console.WriteLine(resultado);
+            return cola;
         }
 
         public void eliminarDatos()

@@ -1,65 +1,91 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.IO;
+using System.Collections;
 
 namespace TPF_Comision_1_Matias_Galvan
 {
-    public class ArbolGeneral<T>
+    public class ArbolGeneral
     {
 
-        private Nodo<T> raiz;
+        // private T dato;
+        private Nodo contenido;
 
-        private List<ArbolGeneral<T>> hijos = new List<ArbolGeneral<T>>();
+        private List<ArbolGeneral> hijos = new List<ArbolGeneral>();
 
-        public ArbolGeneral(T dato)
+        // public ArbolGeneral(T dato)
+        // {
+        //     this.dato = dato;
+        // }
+        public ArbolGeneral(Nodo contenido)
         {
-            this.raiz = new Nodo<T>(dato);
+            this.contenido = contenido;
         }
 
-        private ArbolGeneral(Nodo<T> nodo)
+        public ArbolGeneral()
         {
-            this.raiz = nodo;
+
         }
 
-        private Nodo<T> getRaiz()
+        public Nodo getDatoRaiz()
         {
-            return raiz;
+            return this.contenido;
         }
 
-        public T getDatoRaiz()
+        public List<ArbolGeneral> getHijos()
         {
-            return this.getRaiz().getDato();
+            return hijos;
         }
 
-        public List<ArbolGeneral<T>> getHijos()
+        public void agregarHijo(ArbolGeneral hijo)
         {
-            List<ArbolGeneral<T>> temp = new List<ArbolGeneral<T>>();
-            foreach (var item in this.raiz.getHijos())
-            {
-                temp.Add(new ArbolGeneral<T>(item));
-            }
-            return temp;
+            this.getHijos().Add(hijo);
         }
 
-        public void agregarHijo(ArbolGeneral<T> hijo)
+        public void eliminarHijo(ArbolGeneral hijo)
         {
-            this.raiz.getHijos().Add(hijo.getRaiz());
-        }
-
-        public void eliminarHijo(ArbolGeneral<T> hijo)
-        {
-            this.raiz.getHijos().Remove(hijo.getRaiz());
+            this.getHijos().Remove(hijo);
         }
 
         public bool esVacio()
         {
-            return this.raiz == null;
+            return this.contenido == null;
         }
 
         public bool esHoja()
         {
-            return this.raiz != null && this.getHijos().Count == 0;
+            return this.contenido != null && this.getHijos().Count == 0;
         }
+
+        public void ingresarNodo(Cola<Nodo> cola)
+        {
+            if (cola.mayorQueCero())
+            {
+                bool nodo_encontrado = false;
+                ArbolGeneral nuevoNodo = new ArbolGeneral(cola.desencolar());
+                foreach (ArbolGeneral aux in hijos)
+                {
+                    //comparar
+                    if (aux.getDatoRaiz().getNombreNodo() == nuevoNodo.getDatoRaiz().getNombreNodo())
+                    {
+                        nodo_encontrado = true;
+                        aux.ingresarNodo(cola);
+                    }
+                }
+                //sino lo encontre, lo agrego a la lista
+                if (nodo_encontrado == false)
+                {
+                    hijos.Add(nuevoNodo);
+                    //Reviso si faltan cargar datos
+                    if (!cola.esVacia())
+                    {
+                        nuevoNodo.ingresarNodo(cola);
+                    }
+                }
+            }
+
+        }
+
 
         public int altura()
         {
@@ -67,7 +93,7 @@ namespace TPF_Comision_1_Matias_Galvan
         }
 
 
-        public int nivel(T dato)
+        public int nivel(Nodo dato)
         {
             return 0;
         }
@@ -91,8 +117,8 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void porNiveles()
         {
-            Cola<ArbolGeneral<T>> cola = new Cola<ArbolGeneral<T>>();
-            ArbolGeneral<T> arbolAux;
+            Cola<ArbolGeneral> cola = new Cola<ArbolGeneral>();
+            ArbolGeneral arbolAux;
 
             cola.encolar(this);
             while (!cola.esVacia())
@@ -110,8 +136,8 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public int ancho()
         {
-            Cola<ArbolGeneral<T>> cola = new Cola<ArbolGeneral<T>>();
-            ArbolGeneral<T> arbolAux;
+            Cola<ArbolGeneral> cola = new Cola<ArbolGeneral>();
+            ArbolGeneral arbolAux;
 
             int contNodos = 0;
             int ancho = 0;
@@ -150,10 +176,10 @@ namespace TPF_Comision_1_Matias_Galvan
             return ancho;
         }
 
-		public int anchoComparar(Cola<string> colaHoja)
+        public int anchoComparar(Cola<string> colaHoja)
         {
-            Cola<ArbolGeneral<T>> cola = new Cola<ArbolGeneral<T>>();
-            ArbolGeneral<T> arbolAux;
+            Cola<ArbolGeneral> cola = new Cola<ArbolGeneral>();
+            ArbolGeneral arbolAux;
 
             int contNodos = 0;
             int ancho = 0;
@@ -164,7 +190,7 @@ namespace TPF_Comision_1_Matias_Galvan
             while (!cola.esVacia())
             {
                 arbolAux = cola.desencolar();
-				
+
 
                 if (arbolAux == null)
                 {

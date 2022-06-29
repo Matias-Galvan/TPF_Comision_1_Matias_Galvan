@@ -1,33 +1,69 @@
 using System;
-using System.Collections.Generic;
-using System.IO;
-
+using System.Collections;
+using System.Linq;
+using System.Text;
 namespace TPF_Comision_1_Matias_Galvan
 {
-    public class Nodo<T>
+    public class Nodo
     {
-        private T dato;
-        private List<Nodo<T>> hijos;
+        //Atributos
+        private string dato;
+        private string direccionIP;
 
-        public Nodo(T dato){
+        private ArrayList servicios;
+
+        //Constructores
+
+        public Nodo()
+        {
+
+        }
+
+        public Nodo(string dato, string direccionIP)
+        {
             this.dato = dato;
-            this.hijos = new List<Nodo<T>>();
+            this.direccionIP = direccionIP;
+            servicios = new ArrayList();
         }
-
-        public T getDato(){
-            return this.dato;
-        }
-
-        public List<Nodo<T>> getHijos(){
-            return this.hijos;
-        }
-
-        public void setDato(T dato){
+        public Nodo(string dato)
+        {
             this.dato = dato;
+            servicios = new ArrayList();
         }
 
-        public void setHijos(List<Nodo<T>> hijos){
-            this.hijos = hijos;
+        //Metodos
+
+        public static string ingresarIP()
+        {
+            Console.Clear();
+            string direccionIP;
+            System.Console.WriteLine("Ingrese el primer octeto");
+            string primerOcteto = Console.ReadLine();
+            System.Console.WriteLine("Ingrese el segundo octeto");
+            string segundoOcteto = Console.ReadLine();
+            System.Console.WriteLine("Ingrese el tercer octeto");
+            string tercerOcteto = Console.ReadLine();
+            System.Console.WriteLine("Ingrese el cuarto octeto");
+            string cuartoOcteto = Console.ReadLine();
+
+            direccionIP = primerOcteto + "." + segundoOcteto + "." + tercerOcteto + "." + cuartoOcteto;
+
+            return direccionIP;
+        }
+
+
+        public void agregarServicio()
+        {
+            string servicioAgregar;
+            Console.Clear();
+            Console.Write("Ingrese el servicio: ");//agregamos un servicio, puede tener mas de uno.
+            servicioAgregar = Console.ReadLine().ToUpper();
+
+            servicios.Add(servicioAgregar);
+        }
+
+        public string getNombreNodo(){
+            return dato;
         }
     }
 }

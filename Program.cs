@@ -1,43 +1,43 @@
-﻿// using System;
-// using System.Collections.Generic;
-// using System.IO;
-
+﻿using System.Collections;
 namespace TPF_Comision_1_Matias_Galvan;
-
 class Program
-
 {
-    
+
     static void Main(string[] args)
-
     {
-
-        System.Console.WriteLine("Iniciando...");
-        // ArbolGeneral<string> arbol = new ArbolGeneral<string>("Servidor");
         Menu menu = new Menu();
-        int opc;
-        menu.mostrarMenuPrincipal();
-        opc = int.Parse(Console.ReadLine());
-        menu.elegirOpcion(opc);
+        int opcion = 0;
+        do
+        {
 
-        
-        // ArbolGeneral<string> hijo1 = new ArbolGeneral<string>(20);
-        // ArbolGeneral<string> hijo2 = new ArbolGeneral<string>(30);
-        // ArbolGeneral<string> hijo3 = new ArbolGeneral<string>(40);
+            mostrarMenuPrincipal();
+            opcion = int.Parse(Console.ReadLine());
+            switch (opcion)
+            {
+                case 1: menu.modAdmin(); break;
+                case 2: menu.modConsulta(); break;
 
-        // arbol.agregarHijo(hijo1);
-        // arbol.agregarHijo(hijo2);
-        // arbol.agregarHijo(hijo3);
+                default: break;
+            }
 
-        // for (int i = 1; i < 5; i++)
-        // {
-        //     hijo1.agregarHijo(new ArbolGeneral<int>(i + 10));
-        //     hijo2.agregarHijo(new ArbolGeneral<int>(i + 20));
-        //     hijo3.agregarHijo(new ArbolGeneral<int>(i + 30));
-        // }
+        } while (opcion != 0);
 
-        System.Console.WriteLine("Recorrido preorden");
-         
     }
 
+    static void mostrarMenuPrincipal()
+    {
+        System.Console.WriteLine("*****************************");
+        System.Console.WriteLine("DNS - GESTIÓN DE DIRECCIONES IP");
+        System.Console.WriteLine("*****************************");
+        System.Console.WriteLine("Menú principal");
+        System.Console.WriteLine(" ");
+        System.Console.WriteLine("1- Módulo de administración");
+        System.Console.WriteLine("2- Módulo de consultas");
+        System.Console.WriteLine("0- Salir del programa");
+        Console.Write("Opcion: ");
+
+
+
+    }
 }
+
