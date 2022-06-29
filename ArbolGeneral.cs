@@ -9,7 +9,7 @@ namespace TPF_Comision_1_Matias_Galvan
     {
 
         // private T dato;
-        private Nodo contenido;
+        private Nodo dato;
 
         private List<ArbolGeneral> hijos = new List<ArbolGeneral>();
 
@@ -17,9 +17,9 @@ namespace TPF_Comision_1_Matias_Galvan
         // {
         //     this.dato = dato;
         // }
-        public ArbolGeneral(Nodo contenido)
+        public ArbolGeneral(Nodo dato)
         {
-            this.contenido = contenido;
+            this.dato = dato;
         }
 
         public ArbolGeneral()
@@ -29,7 +29,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public Nodo getDatoRaiz()
         {
-            return this.contenido;
+            return this.dato;
         }
 
         public List<ArbolGeneral> getHijos()
@@ -49,12 +49,12 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public bool esVacio()
         {
-            return this.contenido == null;
+            return this.dato == null;
         }
 
         public bool esHoja()
         {
-            return this.contenido != null && this.getHijos().Count == 0;
+            return this.dato != null && this.getHijos().Count == 0;
         }
 
         public void ingresarNodo(Cola<Nodo> cola)
@@ -103,12 +103,12 @@ namespace TPF_Comision_1_Matias_Galvan
             //Se procesa la raiz
             if (!this.esVacio())
             {
-                System.Console.WriteLine(this.getDatoRaiz() + " ");
+                System.Console.WriteLine(dato.getNombreNodo() + " ");
             }
             //Luego se procesan los hijos
             if (!this.esHoja())
             {
-                foreach (var hijo in this.getHijos())
+                foreach (ArbolGeneral hijo in this.getHijos())
                 {
                     hijo.preOrden();
                 }

@@ -116,14 +116,21 @@ namespace TPF_Comision_1_Matias_Galvan
 
             Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
             string nombreDominio = Console.ReadLine();
+            string[] nombreDominioArray = nombreDominio.Split('.');
+            while (nombreDominioArray.Count() <= 2)
+            {
+                System.Console.WriteLine("Debe ingresar un dominio válido");
+                nombreDominioArray = nombreDominio.Split('.');
+            }
             while (!validarURL.IsMatch(nombreDominio))
             {
                 System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
                 nombreDominio = Console.ReadLine();
             }
 
-            Cola<Nodo> cola = separarDominioSupInf(nombreDominio,false);
+            Cola<Nodo> cola = separarDominioSupInf(nombreDominio, false);
             arbol.ingresarNodo(cola);
+            arbol.preOrden();
 
 
 
@@ -166,32 +173,32 @@ namespace TPF_Comision_1_Matias_Galvan
 
             int contador = nombreDominioArray.Length - 1;
 
-            while (!cola.esVacia())
+            while (contador >= 0)
             {
-                    foreach (var item in nombreDominioArray)
+                foreach (var item in nombreDominioArray)
+                {
+                    if (contador == nombreDominioArray.Length - 1)
                     {
-                        if (contador >= 3)
-                        {
-                            Nodo nuevoNodoDominioSuperior = new Nodo(item);
-                            cola.encolar(nuevoNodoDominioSuperior);
-                        }
-                        else
-                        {
-                            Nodo nuevoNodoDominioInferior = new Nodo(item);
-                            cola.encolar(nuevoNodoDominioInferior);
-                        }
-                        if (contador == 0)
-                        {
-                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
-                            nuevoNodo.agregarServicio();
-                            cola.encolar(nuevoNodo);
-                        }
-                        contador--;
-
+                        Nodo nuevoNodoDominioSuperior = new Nodo(item);
+                        cola.encolar(nuevoNodoDominioSuperior);
                     }
+                    else if (contador != 0)
+                    {
+                        Nodo nuevoNodoDominioInferior = new Nodo(item);
+                        cola.encolar(nuevoNodoDominioInferior);
+                    }
+                    else if (contador == 0)
+                    {
+                        Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
+                        nuevoNodo.agregarServicio();
+                        cola.encolar(nuevoNodo);
+                    }
+                    contador--;
 
-                
-                
+                }
+
+
+
 
             }
 
