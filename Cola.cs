@@ -37,5 +37,15 @@ namespace TPF_Comision_1_Matias_Galvan
         {
             return this.datos.Count > 0;
         }
+
+        public bool distintoQueCero()
+        {
+            return this.datos.Count != 0;
+        }
+
+        public int contarElementos()
+        {
+            return this.datos.Count;
+        }
     }
 }

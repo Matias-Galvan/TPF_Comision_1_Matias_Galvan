@@ -13,7 +13,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public int opc;
 
-        ArbolGeneral arbol = new ArbolGeneral();
+        ArbolGeneral arbol = new ArbolGeneral("Servidor");
 
         public Menu()
         {
@@ -128,44 +128,50 @@ namespace TPF_Comision_1_Matias_Galvan
                 nombreDominio = Console.ReadLine();
             }
 
-            Cola<Nodo> cola = separarDominioSupInf(nombreDominio, false);
+            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, false);
             arbol.ingresarNodo(cola);
-            arbol.preOrden();
+            int cantNodos = arbol.ancho();
+            arbol.armarImprimirRed(arbol, cantNodos);
+            //arbol.preOrden();
+            // arbol.porNiveles();
 
 
 
 
         }
 
-        // public void procesarDatosIngreso(string nomDom, string dirIP, string servicios)
-        // {
-        //     // string resultado = "Finalizo con exito el ingreso";
-        //     string[] nombreDominioArray = nomDom.Split('.');
-        //     Array.Reverse(nombreDominioArray);
+        public void eliminarDatos()
+        {
+            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
 
-        //     Cola<string> cola = new Cola<string>();
-        //     foreach (var item in nombreDominioArray)
-        //     {
-        //         cola.encolar(item);
-        //     }
-        //     while (!cola.esVacia())
-        //     {
-        //         string dato = cola.desencolar();
+            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+            string nombreDominio = Console.ReadLine();
+            string[] nombreDominioArray = nombreDominio.Split('.');
+            while (nombreDominioArray.Count() <= 2)
+            {
+                System.Console.WriteLine("Debe ingresar un dominio válido");
+                nombreDominio = Console.ReadLine();
+                nombreDominioArray = nombreDominio.Split('.');
+            }
+            while (!validarURL.IsMatch(nombreDominio))
+            {
+                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                nombreDominio = Console.ReadLine();
+            }
 
-        //         ArbolGeneral<string> hijo1 = new ArbolGeneral<string>(dato);
-        //         arbol.agregarHijo(hijo1);
+            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
+            arbol.eliminarNodoHoja(cola);
+            int cantNodos = arbol.ancho();
+            //arbol.preOrden();
+            //arbol.porNiveles();
+            arbol.armarImprimirRed(arbol, cantNodos);
 
 
-        //     }
-        //     arbol.preOrden();
 
-        //     // System.Console.WriteLine(dirIP);
-        //     // System.Console.WriteLine(servicios);
 
-        //     // System.Console.WriteLine(resultado);
-        // }
+        }
 
-        static Cola<Nodo> separarDominioSupInf(string nomDominio, bool buscarNodo)
+        static Cola<Nodo> separarDominioSupInfIngreso(string nomDominio, bool buscarNodo)
         {
             string[] nombreDominioArray = nomDominio.Split('.');
             Array.Reverse(nombreDominioArray);
@@ -187,11 +193,21 @@ namespace TPF_Comision_1_Matias_Galvan
                         Nodo nuevoNodoDominioInferior = new Nodo(item);
                         cola.encolar(nuevoNodoDominioInferior);
                     }
+                    //Es la raiz
                     else if (contador == 0)
                     {
-                        Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
-                        nuevoNodo.agregarServicio();
-                        cola.encolar(nuevoNodo);
+                        if (buscarNodo)
+                        {
+                            Nodo nuevoNodo = new Nodo(item);
+                            cola.encolar(nuevoNodo);
+                        }
+                        else//Es la hoja
+                        {
+                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
+                            nuevoNodo.agregarServicio();
+                            cola.encolar(nuevoNodo);
+                        }
+
                     }
                     contador--;
 
@@ -206,9 +222,6 @@ namespace TPF_Comision_1_Matias_Galvan
             return cola;
         }
 
-        public void eliminarDatos()
-        {
-            System.Console.WriteLine("Eliminar rama completa");
-        }
+
     }
 }
