@@ -170,6 +170,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void buscarCantidadPorProfundidad()
         {
+            Console.Clear();
             System.Console.WriteLine("Ingrese la profundidad: ");
             int profundidad = int.Parse(Console.ReadLine());
             int cantidad = arbol.imprimirCantidadPorProfundidad(profundidad);
