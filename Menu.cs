@@ -183,8 +183,14 @@ namespace TPF_Comision_1_Matias_Galvan
 
         static Cola<Nodo> separarDominioSupInfIngreso(string nomDominio, bool buscarNodo)
         {
+            string tipo ="";
             string[] nombreDominioArray = nomDominio.Split('.');
+            //Lo doy vuelta si voy a ingresar dominios
+            // if (!buscarNodo)
+            // {
             Array.Reverse(nombreDominioArray);
+            // }
+
             Cola<Nodo> cola = new Cola<Nodo>();
 
             int contador = nombreDominioArray.Length - 1;
@@ -195,25 +201,29 @@ namespace TPF_Comision_1_Matias_Galvan
                 {
                     if (contador == nombreDominioArray.Length - 1)
                     {
-                        Nodo nuevoNodoDominioSuperior = new Nodo(item);
+                        tipo = "DOMINIOSUP";
+                        Nodo nuevoNodoDominioSuperior = new Nodo(item, tipo);
                         cola.encolar(nuevoNodoDominioSuperior);
                     }
                     else if (contador != 0)
                     {
-                        Nodo nuevoNodoDominioInferior = new Nodo(item);
+                        tipo = "SUBDOMINIO";
+                        Nodo nuevoNodoDominioInferior = new Nodo(item, tipo);
                         cola.encolar(nuevoNodoDominioInferior);
                     }
-                    //Es la raiz
+                    //Es para eliminar
                     else if (contador == 0)
                     {
                         if (buscarNodo)
-                        {
-                            Nodo nuevoNodo = new Nodo(item);
+                        {   
+                            tipo="EQUIPO";
+                            Nodo nuevoNodo = new Nodo(item, tipo);
                             cola.encolar(nuevoNodo);
                         }
-                        else//Es la hoja
-                        {
-                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP());
+                        else//Es para insertar
+                        {   
+                            tipo = "EQUIPO";
+                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP(), tipo );
                             nuevoNodo.agregarServicio();
                             cola.encolar(nuevoNodo);
                         }

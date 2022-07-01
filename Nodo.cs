@@ -7,7 +7,8 @@ namespace TPF_Comision_1_Matias_Galvan
     public class Nodo
     {
         //Atributos
-        public string dato;
+        public string dato,tipo;
+
         private string direccionIP;
 
         private ArrayList servicios;
@@ -21,15 +22,17 @@ namespace TPF_Comision_1_Matias_Galvan
 
         }
 
-        public Nodo(string dato, string direccionIP)
+        public Nodo(string dato, string direccionIP, string tipo)
         {
+            this.tipo = tipo;
             this.dato = dato;
             this.direccionIP = direccionIP;
             servicios = new ArrayList();
         }
-        public Nodo(string dato)
+        public Nodo(string dato, string tipo)
         {
             this.dato = dato;
+            this.tipo=tipo;
         }
 
         public ArrayList verServicios()
@@ -76,6 +79,10 @@ namespace TPF_Comision_1_Matias_Galvan
         public string getNombreNodo()
         {
             return dato;
+        }
+
+        public string getTipo(){
+            return tipo;
         }
 
         public void setNombreNodo()

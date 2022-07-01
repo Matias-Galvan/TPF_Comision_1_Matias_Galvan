@@ -23,6 +23,7 @@ class Program
                 switch (opcion)
                 {
                     case 1:
+                        continuarMenuAdmin= true;
                         while (continuarMenuAdmin)
                         {
                             menu.modAdmin();
@@ -62,6 +63,7 @@ class Program
                         volverAlMenuPrincipal = continuarMenuPrincipal ? true : false;
                         break;
                     case 2:
+                        continuarMenuConsulta=true;
                         while (continuarMenuConsulta)
                         {
                             menu.modConsulta();

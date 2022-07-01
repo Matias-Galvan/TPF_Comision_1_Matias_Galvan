@@ -61,7 +61,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public bool esHoja()
         {
-            return this.dato != null && this.getHijos().Count == 0;
+            return this.getHijos().Count == 0;
         }
 
         public List<ArbolGeneral> copiaHijos(List<ArbolGeneral> copiaEliminacion)
@@ -71,6 +71,7 @@ namespace TPF_Comision_1_Matias_Galvan
             {
                 lista.Add(aux);
             }
+            // lista.Reverse();
             return lista;
         }
 
@@ -107,13 +108,13 @@ namespace TPF_Comision_1_Matias_Galvan
         {
             //Lista para verificar que no hayan quedado subdominios sin borrar
             List<ArbolGeneral> espejo = copiaHijos(hijos);
-            if (!cola.esVacia())
+            while (!cola.esVacia())
             {
                 ArbolGeneral eliminarNodo = new ArbolGeneral(cola.desencolar());
                 foreach (ArbolGeneral arbolAux in hijos)
                 {
 
-                    if (eliminarNodo.esHoja())
+                    if (eliminarNodo.esHoja() && !cola.esVacia())
                     {
                         arbolAux.eliminarNodoHoja(cola);
                     }
@@ -123,7 +124,7 @@ namespace TPF_Comision_1_Matias_Galvan
                     //Limpieza del arbol para ver que no hayan quedado dominios
                     foreach (ArbolGeneral aux in espejo)
                     {
-                        if (aux.getDatoRaiz().getNombreNodo() == eliminarNodo.getDatoRaiz().getNombreNodo() && aux.esHoja())
+                        if (aux.esHoja() && aux.getDatoRaiz().getNombreNodo() == eliminarNodo.getDatoRaiz().getNombreNodo())
                         {
                             hijos.Remove(aux);
                         }
@@ -135,16 +136,16 @@ namespace TPF_Comision_1_Matias_Galvan
                     }
                 }
             }
-            foreach (ArbolGeneral aux in espejo)
-            {
-                if (aux.esHoja())
-                {
-                    if (aux.contarHijos() == 0)
-                    {
-                        hijos.Remove(aux);
-                    }
-                }
-            }
+            // foreach (ArbolGeneral aux in espejo)
+            // {
+            //     if (aux.esHoja())
+            //     {
+            //         if (aux.contarHijos() == 0)
+            //         {
+            //             hijos.Remove(aux);
+            //         }
+            //     }
+            // }
 
         }
 
