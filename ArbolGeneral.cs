@@ -102,11 +102,6 @@ namespace TPF_Comision_1_Matias_Galvan
             }
 
         }
-        // public void obtenerRaiz(Cola<Nodo> cola)
-        // {
-        //     ArbolGeneral eliminarNodo = new ArbolGeneral(cola.desencolar());
-        //     this.eliminarNodoHoja(eliminarNodo);
-        // }
 
         public void eliminarNodoHoja(Cola<Nodo> cola)
         {
@@ -140,8 +135,6 @@ namespace TPF_Comision_1_Matias_Galvan
                     }
                 }
             }
-
-
             foreach (ArbolGeneral aux in espejo)
             {
                 if (aux.esHoja())
@@ -151,75 +144,113 @@ namespace TPF_Comision_1_Matias_Galvan
                         hijos.Remove(aux);
                     }
                 }
-
             }
-
-
-
 
         }
 
-        // public ArbolGeneral eliminarNodoHoja(ArbolGeneral raiz)
-        // {
-        //     if (raiz == null)
-        //     {
-        //         return null;
-        //     }
-        //     // if (raiz.getHijos().Count == 0)
-        //     // {
-        //     //     return null;
-        //     // }
-        //     for (int i = 0; i < raiz.getHijos().Count; i++)
-        //     {
-        //         ArbolGeneral hijoNodo = (ArbolGeneral)raiz.getHijos()[i];
-        //         if (hijoNodo.getHijos().Count == 0)
-        //         {
-        //             for (int j = 0; j < raiz.getHijos().Count - 1; j++)
-        //             {
-        //                 raiz.getHijos()[j] = raiz.getHijos()[j + 1];
-        //             }
-        //             raiz.getHijos().RemoveAt(raiz.getHijos().Count - 1);
-        //             i--;
-        //         }
-        //     }
-        //     for (int i = 0; i < raiz.getHijos().Count; i++)
-        //     {
-        //         raiz.getHijos()[i] = eliminarNodoHoja((ArbolGeneral)raiz.getHijos()[i]);
-        //     }
-        //     return raiz;
+        public void mostrarEquiposSubdominio(Cola<Nodo> cola)
+        {
+            string resultado = null;
+            ArbolGeneral equipo = new ArbolGeneral(cola.desencolar());
+            foreach (ArbolGeneral aux in hijos)
+            {
+                if (cola.contarElementos() >= 2)
+                {
+                    aux.mostrarEquiposSubdominio(cola);
+                }
+                else //if (cola.contarElementos() == 0)
+                {
+                    resultado += "Subdominio: " + equipo.getDatoRaiz().getNombreNodo();
+                    foreach (ArbolGeneral item in aux.getHijos())
+                    {
+                        resultado += "\nHijo: " + item.getDatoRaiz().getNombreNodo();
 
-        // }
+                    }
+                    System.Console.WriteLine(resultado);
+                }
 
-        // public int altura()
-        // {
-        //     return 0;
-        // }
+            }
+        }
 
+        public string imprimirEquipo(Cola<Nodo> cola)
+        {
+            string nodoEquipo = null;
+            ArbolGeneral equipoNombre = new ArbolGeneral(cola.desencolar());
 
-        // public int nivel(Nodo dato)
-        // {
-        //     return 0;
-        // }
+            foreach (ArbolGeneral aux in hijos)
+            {
+                if (aux.getDatoRaiz().getNombreNodo() == equipoNombre.getDatoRaiz().getNombreNodo() && !cola.esVacia())
+                {
+                    nodoEquipo = aux.imprimirEquipo(cola);
+                }
+                else if (aux.getDatoRaiz().getNombreNodo() == equipoNombre.getDatoRaiz().getNombreNodo() && cola.esVacia())
+                {
+                    if (equipoNombre.esHoja())
+                    {
+                        return nodoEquipo = "Equipo: " + aux.getDatoRaiz().getNombreNodo() + "\nServicios: " + aux.getDatoRaiz().verServicios()[0] + "\nDirección IP: " + aux.getDatoRaiz().verDirIP();
+                    }
+                }
+            }
+            return nodoEquipo;
+        }
 
-        // public void preOrden()
-        // {
-        //     //Se procesa la raiz
-        //     if (!this.esVacio())
-        //     {
-        //         //Console.Write("└─" + dato.getNombreNodo() + " ");
-        //         System.Console.WriteLine(dato.getNombreNodo() + " ");
-        //     }
-        //     //Luego se procesan los hijos
-        //     if (!this.esHoja())
-        //     {
-        //         foreach (ArbolGeneral hijo in this.getHijos())
-        //         {
-        //             // Console.Write("├─");
-        //             // Console.Write("| ");
-        //             hijo.preOrden();
-        //         }
-        //     }
-        // }
+        public int imprimirCantidadPorProfundidad(int profundidad)
+        {
+            int contador = 0;
+            Cola<ArbolGeneral> cola = new Cola<ArbolGeneral>();
+            ArbolGeneral aux;
+            int nivel = 0;
+            cola.encolar(this);
+            cola.encolar(null);
+
+            while (!cola.esVacia())
+            {
+                if (nivel == profundidad)
+                {
+                    break;
+                }
+
+                aux = cola.desencolar();
+                if (aux == null)
+                {
+                    if (!cola.esVacia())
+                    {
+                        cola.encolar(null);
+                        nivel++;
+                    }
+                }
+                else
+                {
+                    contador++;
+                    foreach (var hijo in aux.getHijos())
+                    {
+                        cola.encolar(hijo);
+                    }
+                }
+            }
+
+            return contador;
+        }
+
+        public void preOrden()
+        {
+            //Se procesa la raiz
+            if (!this.esVacio())
+            {
+                //Console.Write("└─" + dato.getNombreNodo() + " ");
+                System.Console.WriteLine(dato.getNombreNodo() + " ");
+            }
+            //Luego se procesan los hijos
+            if (!this.esHoja())
+            {
+                foreach (ArbolGeneral hijo in this.getHijos())
+                {
+                    // Console.Write("├─");
+                    // Console.Write("| ");
+                    hijo.preOrden();
+                }
+            }
+        }
 
         public void porNiveles()
         {
@@ -253,9 +284,7 @@ namespace TPF_Comision_1_Matias_Galvan
                     Console.WriteLine();
                 }
 
-
             }
-
 
         }
 

@@ -19,33 +19,7 @@ namespace TPF_Comision_1_Matias_Galvan
         {
 
         }
-
-
-
-        public int elegirOpcion(int opcion)
-        {
-            switch (opcion)
-            {
-                case 1:
-                    this.modAdmin();
-                    break;
-                case 2:
-                    this.modConsulta();
-                    break;
-                case 3:
-                    System.Console.WriteLine("Presione una tecla para salir...");
-                    Console.ReadKey();
-                    Console.Clear();
-                    break;
-                default:
-                    System.Console.WriteLine("Errorardo");
-                    break;
-
-            }
-
-
-            return opcion;
-        }
+        /* Métodos */
 
         public void modAdmin()
         {
@@ -57,8 +31,6 @@ namespace TPF_Comision_1_Matias_Galvan
             System.Console.WriteLine("2-Eliminar equipo");
             System.Console.WriteLine("3-Regresar al menú principal");
             Console.Write("Opcion: ");
-            int opcionElegida = int.Parse(Console.ReadLine());
-            this.menuAdmin(opcionElegida);
 
         }
 
@@ -68,46 +40,26 @@ namespace TPF_Comision_1_Matias_Galvan
             System.Console.WriteLine("*****************************");
             System.Console.WriteLine("MÓDULO CONSULTAS");
             System.Console.WriteLine("*****************************");
-            System.Console.WriteLine("1-Ver dirección IP con todos los servicios(Dominio/Equipo)");
-            System.Console.WriteLine("2-Ver todos los equipos de un subdominio(Subdominio/Equipos)");
-            System.Console.WriteLine("3-Ver por profundidad dominios, subdominios o equipos");
-            System.Console.WriteLine("4-Regresar al menú principal");
+            System.Console.WriteLine("1-Imprimir la red actual");
+            System.Console.WriteLine("2-Ver equipo con su dirección IP y servicios");
+            System.Console.WriteLine("3-Ver todos los equipos de un subdominio(Subdominio/Equipos)");
+            System.Console.WriteLine("4-Cantidad de ");
+            System.Console.WriteLine("5-Regresar al menú principal");
             Console.Write("Opcion: ");
         }
 
-        public void menuAdmin(int opcion)
+        public void imprimirArbol()
         {
-            switch (opcion)
+            int cantNodos = arbol.ancho();
+            if (cantNodos == 1)
             {
-                case 1:
-                    this.ingresarDatos();
-                    break;
-                case 2:
-                    this.eliminarDatos();
-                    break;
-                default:
-                    break;
+                System.Console.WriteLine("Red vacía. Ingrese dominios para visualizar");
+            }
+            else
+            {
+                arbol.armarImprimirRed(arbol, cantNodos);
             }
 
-        }
-
-        public int menuConsulta(int opcion)
-        {
-            switch (opcion)
-            {
-                case 1:
-                    System.Console.WriteLine("Imprimiendo ip con todos los servicios....");
-                    break;
-                case 2:
-                    System.Console.WriteLine("Imprimiendo todos los equipos de un subdominio....");
-                    break;
-                case 3:
-                    System.Console.WriteLine("Imprimiendo cantidad de dominios, subdominios, equipos....");
-                    break;
-                default:
-                    break;
-            }
-            return opcion;
         }
 
         public void ingresarDatos()
@@ -130,14 +82,10 @@ namespace TPF_Comision_1_Matias_Galvan
 
             Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, false);
             arbol.ingresarNodo(cola);
-            int cantNodos = arbol.ancho();
-            arbol.armarImprimirRed(arbol, cantNodos);
-            //arbol.preOrden();
-            // arbol.porNiveles();
-
-
-
-
+            System.Console.WriteLine("Ingreso exitoso");
+            System.Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         public void eliminarDatos()
@@ -147,7 +95,7 @@ namespace TPF_Comision_1_Matias_Galvan
             Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
             string nombreDominio = Console.ReadLine();
             string[] nombreDominioArray = nombreDominio.Split('.');
-            while (nombreDominioArray.Count() <= 2)
+            while (nombreDominioArray.Count() <= 1)
             {
                 System.Console.WriteLine("Debe ingresar un dominio válido");
                 nombreDominio = Console.ReadLine();
@@ -161,14 +109,75 @@ namespace TPF_Comision_1_Matias_Galvan
 
             Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
             arbol.eliminarNodoHoja(cola);
-            int cantNodos = arbol.ancho();
-            //arbol.preOrden();
-            //arbol.porNiveles();
-            arbol.armarImprimirRed(arbol, cantNodos);
+            System.Console.WriteLine("Eliminación exitosa");
+            System.Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
+        }
 
+        public void buscarEquipo()
+        {
+            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+            string nombreDominio = Console.ReadLine();
+            string[] nombreDominioArray = nombreDominio.Split('.');
+            while (nombreDominioArray.Count() <= 1)
+            {
+                System.Console.WriteLine("Debe ingresar un dominio válido");
+                nombreDominio = Console.ReadLine();
+                nombreDominioArray = nombreDominio.Split('.');
+            }
+            while (!validarURL.IsMatch(nombreDominio))
+            {
+                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                nombreDominio = Console.ReadLine();
+            }
 
+            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
+            string resultado = arbol.imprimirEquipo(cola);
+            Console.Write(resultado);
+            System.Console.WriteLine(" ");
+            System.Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
+        }
 
+        public void imprimirEquiposSubdominio()
+        {
+            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+            string nombreDominio = Console.ReadLine();
+            string[] nombreDominioArray = nombreDominio.Split('.');
+            while (nombreDominioArray.Count() <= 1)
+            {
+                System.Console.WriteLine("Debe ingresar un dominio válido");
+                nombreDominio = Console.ReadLine();
+                nombreDominioArray = nombreDominio.Split('.');
+            }
+            while (!validarURL.IsMatch(nombreDominio))
+            {
+                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                nombreDominio = Console.ReadLine();
+            }
 
+            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
+            arbol.mostrarEquiposSubdominio(cola);
+            System.Console.WriteLine(" ");
+            System.Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
+        }
+
+        public void buscarCantidadPorProfundidad()
+        {
+            System.Console.WriteLine("Ingrese la profundidad: ");
+            int profundidad = int.Parse(Console.ReadLine());
+            int cantidad = arbol.imprimirCantidadPorProfundidad(profundidad);
+            System.Console.WriteLine(cantidad);
+            System.Console.WriteLine(" ");
+            System.Console.WriteLine("Presione una tecla para continuar...");
+            Console.ReadKey();
+            Console.Clear();
         }
 
         static Cola<Nodo> separarDominioSupInfIngreso(string nomDominio, bool buscarNodo)
@@ -213,15 +222,8 @@ namespace TPF_Comision_1_Matias_Galvan
 
                 }
 
-
-
-
             }
-
-
             return cola;
         }
-
-
     }
 }

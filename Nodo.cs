@@ -32,6 +32,16 @@ namespace TPF_Comision_1_Matias_Galvan
             this.dato = dato;
         }
 
+        public ArrayList verServicios()
+        {
+            return servicios;
+        }
+
+        public string verDirIP()
+        {
+            return direccionIP;
+        }
+
         //Metodos
 
         public static string ingresarIP()
