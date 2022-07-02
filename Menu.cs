@@ -38,7 +38,7 @@ namespace TPF_Comision_1_Matias_Galvan
             System.Console.WriteLine("1-Imprimir la red actual");
             System.Console.WriteLine("2-Ver equipo con su dirección IP y servicios");
             System.Console.WriteLine("3-Ver todos los equipos de un subdominio(Subdominio/Equipos)");
-            System.Console.WriteLine("4-Cantidad de ");
+            System.Console.WriteLine("4-Cantidad de nodos por profundidad del árbol");
             System.Console.WriteLine("5-Regresar al menú principal");
             Console.Write("Opcion: ");
         }
@@ -84,48 +84,49 @@ namespace TPF_Comision_1_Matias_Galvan
                     }
 
                     Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, false);
-                    Cola<Nodo> colaIngresar = separarDominioSupInfIngreso(nombreDominio, true);
-                    if (!arbol.verificarURL(cola))
-                    {
-                        arbol.ingresarNodo(colaIngresar);
+                   // Cola<Nodo> colaIngresar = new Cola<Nodo>();
+                    // if (!arbol.verificarURL(cola))
+                    // {
+                        arbol.ingresarNodo(cola);
+                       // arbol.ingresarNodo(colaIngresar);
                         System.Console.WriteLine("Ingreso exitoso");
                         System.Console.WriteLine("Presione una tecla para continuar...");
                         Console.ReadKey();
                         continuarIngreso = false;
                         Console.Clear();
-                    }
-                    else
-                    {
-                        System.Console.WriteLine("Atención! Se encontró la URL. ¿Desea sobreescribir el equipo? (s/n)");
-                        string seleccion = Console.ReadLine().ToUpper();
-                        while (seleccion == "S")
-                        {
-                            if (seleccion == "" && seleccion != "S" && seleccion != "N")
-                            {
-                                System.Console.WriteLine("Opción incorrecta, vuelva a ingresar (s/n)");
-                                seleccion = Console.ReadLine().ToUpper();
-                            }
-                            else if (seleccion == "S")
-                            {
-                                arbol.ingresarNodo(colaIngresar);
-                                System.Console.WriteLine("Ingreso exitoso");
-                                System.Console.WriteLine("Presione una tecla para continuar...");
-                                Console.ReadKey();
-                                continuarIngreso = false;
-                                Console.Clear();
-                                break;
-                            }
-                        }
-                        if (seleccion == "N")
-                        {
-                            continuarIngreso = false;
+                    // }
+                    // else
+                    // {
+                    //     System.Console.WriteLine("Atención! Se encontró la URL. ¿Desea sobreescribir el equipo? (s/n)");
+                    //     string seleccion = Console.ReadLine().ToUpper();
+                    //     while (seleccion == "S")
+                    //     {
+                    //         if (seleccion == "" && seleccion != "S" && seleccion != "N")
+                    //         {
+                    //             System.Console.WriteLine("Opción incorrecta, vuelva a ingresar (s/n)");
+                    //             seleccion = Console.ReadLine().ToUpper();
+                    //         }
+                    //         else if (seleccion == "S")
+                    //         {
+                    //             arbol.ingresarNodo(colaIngresar);
+                    //             System.Console.WriteLine("Ingreso exitoso");
+                    //             System.Console.WriteLine("Presione una tecla para continuar...");
+                    //             Console.ReadKey();
+                    //             continuarIngreso = false;
+                    //             Console.Clear();
+                    //             break;
+                    //         }
+                    //     }
+                    //     if (seleccion == "N")
+                    //     {
+                    //         continuarIngreso = false;
 
-                        }
-                        else
-                        {
-                            continuarIngreso = true;
-                        }
-                    }
+                    //     }
+                    //     else
+                    //     {
+                    //         continuarIngreso = true;
+                    //     }
+                    // }
 
                 }
 

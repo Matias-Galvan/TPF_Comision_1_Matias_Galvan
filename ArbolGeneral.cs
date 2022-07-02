@@ -76,7 +76,7 @@ namespace TPF_Comision_1_Matias_Galvan
             {
                 lista.Add(aux);
             }
-            // lista.Reverse();
+            //lista.Reverse();
             return lista;
         }
 
@@ -137,7 +137,7 @@ namespace TPF_Comision_1_Matias_Galvan
                 foreach (ArbolGeneral arbolAux in hijos)
                 {
 
-                    if (eliminarNodo.esHoja() && !cola.esVacia())
+                    if (eliminarNodo.getDatoRaiz().getNombreNodo() == arbolAux.getDatoRaiz().getNombreNodo() && !cola.esVacia())
                     {
                         arbolAux.eliminarNodoHoja(cola);
                     }
@@ -147,13 +147,9 @@ namespace TPF_Comision_1_Matias_Galvan
                     //Limpieza del arbol para ver que no hayan quedado dominios
                     foreach (ArbolGeneral aux in espejo)
                     {
-                        if (aux.esHoja() && aux.getDatoRaiz().getNombreNodo() == eliminarNodo.getDatoRaiz().getNombreNodo())
+                        if (aux.getDatoRaiz().getNombreNodo() == eliminarNodo.getDatoRaiz().getNombreNodo() &&aux.esHoja())
                         {
                             hijos.Remove(aux);
-                        }
-                        else
-                        {
-                            return;
                         }
 
                     }
@@ -161,7 +157,8 @@ namespace TPF_Comision_1_Matias_Galvan
             }
             foreach (ArbolGeneral aux in espejo)
             {
-                if (aux.esHoja())
+                string verificacion=aux.getDatoRaiz().getTipo();
+                if (verificacion =="SUBDOMINIO" || verificacion=="DOMINIOSUP")
                 {
                     if (aux.contarHijos() == 0)
                     {
