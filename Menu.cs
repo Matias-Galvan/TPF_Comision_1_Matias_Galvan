@@ -7,13 +7,8 @@ namespace TPF_Comision_1_Matias_Galvan
 {
     public class Menu
     {
-        private string opcion1;
-        private string opcion2;
-        private string opcion3;
 
-        public int opc;
-
-        ArbolGeneral arbol = new ArbolGeneral("Servidor");
+        ArbolGeneral arbol = new ArbolGeneral();
 
         public Menu()
         {
@@ -64,82 +59,240 @@ namespace TPF_Comision_1_Matias_Galvan
 
         public void ingresarDatos()
         {
-            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
-
-            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
-            string nombreDominio = Console.ReadLine();
-            string[] nombreDominioArray = nombreDominio.Split('.');
-            while (nombreDominioArray.Count() <= 2)
+            bool continuarIngreso;
+            continuarIngreso = true;
+            try
             {
-                System.Console.WriteLine("Debe ingresar un dominio válido");
-                nombreDominioArray = nombreDominio.Split('.');
+                while (continuarIngreso)
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+
+                    Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+                    string nombreDominio = Console.ReadLine();
+                    string[] nombreDominioArray = nombreDominio.Split('.');
+                    while (nombreDominioArray.Count() <= 2)
+                    {
+                        System.Console.WriteLine("Debe ingresar un dominio válido, vuelva a intentarlo");
+                        nombreDominio = Console.ReadLine();
+                        nombreDominioArray = nombreDominio.Split('.');
+                    }
+                    while (!validarURL.IsMatch(nombreDominio))
+                    {
+                        System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                        nombreDominio = Console.ReadLine();
+                    }
+
+                    Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, false);
+                    Cola<Nodo> colaIngresar = separarDominioSupInfIngreso(nombreDominio, true);
+                    if (!arbol.verificarURL(cola))
+                    {
+                        arbol.ingresarNodo(colaIngresar);
+                        System.Console.WriteLine("Ingreso exitoso");
+                        System.Console.WriteLine("Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        continuarIngreso = false;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Atención! Se encontró la URL. ¿Desea sobreescribir el equipo? (s/n)");
+                        string seleccion = Console.ReadLine().ToUpper();
+                        while (seleccion == "S")
+                        {
+                            if (seleccion == "" && seleccion != "S" && seleccion != "N")
+                            {
+                                System.Console.WriteLine("Opción incorrecta, vuelva a ingresar (s/n)");
+                                seleccion = Console.ReadLine().ToUpper();
+                            }
+                            else if (seleccion == "S")
+                            {
+                                arbol.ingresarNodo(colaIngresar);
+                                System.Console.WriteLine("Ingreso exitoso");
+                                System.Console.WriteLine("Presione una tecla para continuar...");
+                                Console.ReadKey();
+                                continuarIngreso = false;
+                                Console.Clear();
+                                break;
+                            }
+                        }
+                        if (seleccion == "N")
+                        {
+                            continuarIngreso = false;
+
+                        }
+                        else
+                        {
+                            continuarIngreso = true;
+                        }
+                    }
+
+                }
+
             }
-            while (!validarURL.IsMatch(nombreDominio))
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
-                nombreDominio = Console.ReadLine();
+
+                throw;
             }
 
-            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, false);
-            arbol.ingresarNodo(cola);
-            System.Console.WriteLine("Ingreso exitoso");
-            System.Console.WriteLine("Presione una tecla para continuar...");
-            Console.ReadKey();
-            Console.Clear();
         }
 
         public void eliminarDatos()
         {
-            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
-
-            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
-            string nombreDominio = Console.ReadLine();
-            string[] nombreDominioArray = nombreDominio.Split('.');
-            while (nombreDominioArray.Count() <= 1)
+            bool continuarEliminacion;
+            continuarEliminacion = true;
+            try
             {
-                System.Console.WriteLine("Debe ingresar un dominio válido");
-                nombreDominio = Console.ReadLine();
-                nombreDominioArray = nombreDominio.Split('.');
+                while (continuarEliminacion)
+                {
+                    Console.Clear();
+                    System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+
+                    Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+                    string nombreDominio = Console.ReadLine();
+                    string[] nombreDominioArray = nombreDominio.Split('.');
+                    while (nombreDominioArray.Count() <= 2)
+                    {
+                        System.Console.WriteLine("Debe ingresar un dominio válido");
+                        nombreDominio = Console.ReadLine();
+                        nombreDominioArray = nombreDominio.Split('.');
+                    }
+                    while (!validarURL.IsMatch(nombreDominio))
+                    {
+                        System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                        nombreDominio = Console.ReadLine();
+                    }
+
+                    Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
+                    Cola<Nodo> colaEliminar = separarDominioSupInfIngreso(nombreDominio, true);
+
+                    if (arbol.verificarURL(cola))
+                    {
+                        arbol.eliminarNodoHoja(colaEliminar);
+                        System.Console.WriteLine("Eliminación exitosa");
+                        System.Console.WriteLine("Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        continuarEliminacion = false;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("URL no encontrada. ¿Desea volver a intentarlo? (s/n)");
+                        string seleccion = Console.ReadLine().ToUpper();
+                        while (seleccion == "S")
+                        {
+                            if (seleccion == "" && seleccion != "S" && seleccion != "N")
+                            {
+                                System.Console.WriteLine("Opción incorrecta, vuelva a ingresar (s/n)");
+                                seleccion = Console.ReadLine().ToUpper();
+                            }
+                            else if (seleccion == "S")
+                            {
+                                continuarEliminacion = true;
+                                break;
+                            }
+                        }
+                        if (seleccion == "N")
+                        {
+                            continuarEliminacion = false;
+
+                        }
+                        else
+                        {
+                            continuarEliminacion = true;
+                        }
+                    }
+
+                }
+
             }
-            while (!validarURL.IsMatch(nombreDominio))
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
-                nombreDominio = Console.ReadLine();
+
+                throw;
             }
 
-            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
-            arbol.eliminarNodoHoja(cola);
-            System.Console.WriteLine("Eliminación exitosa");
-            System.Console.WriteLine("Presione una tecla para continuar...");
+            System.Console.WriteLine("Presione una tecla para continuar");
             Console.ReadKey();
             Console.Clear();
+
         }
 
         public void buscarEquipo()
         {
-            System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
-            Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
-            string nombreDominio = Console.ReadLine();
-            string[] nombreDominioArray = nombreDominio.Split('.');
-            while (nombreDominioArray.Count() <= 1)
+            bool continuarBusqueda;
+            continuarBusqueda = true;
+            try
             {
-                System.Console.WriteLine("Debe ingresar un dominio válido");
-                nombreDominio = Console.ReadLine();
-                nombreDominioArray = nombreDominio.Split('.');
+                while (continuarBusqueda)
+                {
+                    System.Console.WriteLine("Paso 1 / Ingresar nombre de dominio completo, es.wikipedia.org");
+                    Regex validarURL = new Regex(@"^(?!(?:www\.)?google\.com)([\da-zA-Z.-]+)\.([a-zA-Z.]{2,6})([\/\w .-]*)*\/?$");
+                    string nombreDominio = Console.ReadLine();
+                    string[] nombreDominioArray = nombreDominio.Split('.');
+                    while (nombreDominioArray.Count() <= 2)
+                    {
+                        System.Console.WriteLine("Debe ingresar un dominio válido");
+                        nombreDominio = Console.ReadLine();
+                        nombreDominioArray = nombreDominio.Split('.');
+                    }
+                    while (!validarURL.IsMatch(nombreDominio))
+                    {
+                        System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
+                        nombreDominio = Console.ReadLine();
+                    }
+
+                    Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
+                    Cola<Nodo> colaBuscar = separarDominioSupInfIngreso(nombreDominio, true);
+                    if (arbol.verificarURL(cola))
+                    {
+                        string resultado = arbol.imprimirEquipo(colaBuscar);
+                        Console.Write(resultado);
+                        System.Console.WriteLine(" ");
+                        System.Console.WriteLine("Presione una tecla para continuar...");
+                        Console.ReadKey();
+                        continuarBusqueda = false;
+                        Console.Clear();
+                    }
+                    else
+                    {
+                        System.Console.WriteLine("Equipo no encontrado. ¿Desea volver a iniciar la búsqueda? (s/n)");
+                        string seleccion = Console.ReadLine().ToUpper();
+                        while (seleccion == "S")
+                        {
+                            if (seleccion == "" && seleccion != "S" && seleccion != "N")
+                            {
+                                System.Console.WriteLine("Opción incorrecta, vuelva a ingresar (s/n)");
+                                seleccion = Console.ReadLine().ToUpper();
+                            }
+                            else if (seleccion == "S")
+                            {
+                                continuarBusqueda = true;
+                                break;
+                            }
+                        }
+                        if (seleccion == "N")
+                        {
+                            continuarBusqueda = false;
+
+                        }
+                        else
+                        {
+                            continuarBusqueda = true;
+                        }
+
+                    }
+
+
+                }
             }
-            while (!validarURL.IsMatch(nombreDominio))
+            catch (System.Exception)
             {
-                System.Console.WriteLine("Patrón incorrecto. Vuelva a ingresar el dominio");
-                nombreDominio = Console.ReadLine();
+
+                throw;
             }
 
-            Cola<Nodo> cola = separarDominioSupInfIngreso(nombreDominio, true);
-            string resultado = arbol.imprimirEquipo(cola);
-            Console.Write(resultado);
-            System.Console.WriteLine(" ");
-            System.Console.WriteLine("Presione una tecla para continuar...");
-            Console.ReadKey();
-            Console.Clear();
         }
 
         public void imprimirEquiposSubdominio()
@@ -183,7 +336,7 @@ namespace TPF_Comision_1_Matias_Galvan
 
         static Cola<Nodo> separarDominioSupInfIngreso(string nomDominio, bool buscarNodo)
         {
-            string tipo ="";
+            string tipo = "";
             string[] nombreDominioArray = nomDominio.Split('.');
             //Lo doy vuelta si voy a ingresar dominios
             // if (!buscarNodo)
@@ -215,15 +368,15 @@ namespace TPF_Comision_1_Matias_Galvan
                     else if (contador == 0)
                     {
                         if (buscarNodo)
-                        {   
-                            tipo="EQUIPO";
+                        {
+                            tipo = "EQUIPO";
                             Nodo nuevoNodo = new Nodo(item, tipo);
                             cola.encolar(nuevoNodo);
                         }
                         else//Es para insertar
-                        {   
+                        {
                             tipo = "EQUIPO";
-                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP(), tipo );
+                            Nodo nuevoNodo = new Nodo(item, Nodo.ingresarIP(), tipo);
                             nuevoNodo.agregarServicio();
                             cola.encolar(nuevoNodo);
                         }
